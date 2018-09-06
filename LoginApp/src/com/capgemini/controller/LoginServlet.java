@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		HashMap<String, String>users=(HashMap<String, String>)context.getAttribute("usersData");
+		HashMap<String, String> users=(HashMap<String, String>)context.getAttribute("usersData");
 		
 		if(users.containsKey(username)) {
 			if(users.get(username).equals(password)) {
