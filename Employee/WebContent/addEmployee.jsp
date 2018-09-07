@@ -20,9 +20,7 @@
 		<input type="number" name="empSalary" size="15" required/>
 		<br>
 		<label>Employee Department:</label>
-		<input type="text" name="empDepartment" required/>
-		<br>
-		<select>
+		<select name="empDepartment">
 		<option value="IT">IT</option>
 		<option value="HR">HR</option>
 		<option value="JAVA">JAVA</option>

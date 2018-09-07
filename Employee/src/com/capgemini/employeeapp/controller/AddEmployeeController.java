@@ -1,6 +1,10 @@
 package com.capgemini.employeeapp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +19,15 @@ import com.capgemini.employeeapp.dao.impl.EmployeeDaoImpl;
 public class AddEmployeeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EmployeeDao employeeDao = new EmployeeDaoImpl();
-
+	private ServletContext context;
+	
 	public AddEmployeeController() {
 		super();
-
+		employeeDao = new EmployeeDaoImpl();
+	}
+	@Override
+	public void init(ServletConfig config) throws ServletException{
+		context=config.getServletContext();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -30,10 +39,14 @@ public class AddEmployeeController extends HttpServlet {
 		String empDepartment = request.getParameter("empDepartment");
 
 		Employee employee = new Employee(empId, empName, empSalary, empDepartment);
+		context.setAttribute("employeeDao", employeeDao);
+		
+		RequestDispatcher dispatcher=null;
 		if (employeeDao.addEmployee(employee)) {
-
+			response.sendRedirect("getAllEmployees");
 		} else {
-
+			dispatcher = request.getRequestDispatcher("Error.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 
