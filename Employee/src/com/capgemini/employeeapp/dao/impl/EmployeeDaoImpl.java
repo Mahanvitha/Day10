@@ -44,6 +44,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
+		for(Employee employ: employees ) {
+			if(employ.getEmployeeId() == employee.getEmployeeId())
+				employ.setEmployeeName(employee.getEmployeeName());
+				employ.setEmployeeSalary(employee.getEmployeeSalary());
+				employ.setEmployeeDepartment(employee.getEmployeeDepartment());
+				return employ;
+		}
 			return null;
 	}
 

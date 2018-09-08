@@ -28,12 +28,14 @@
 				<td>${employee.employeeName}</td>
 				<td>${employee.employeeSalary}</td>
 				<td>${employee.employeeDepartment}</td>
-				<td><a href="">Edit</a></td>
-				<td><a href="">Delete</a></td>
+				<td><a href="updateEmployee?Id=${employee.employeeId}">Edit</a></td>
+				<td><a href="deleteEmployee?Id=${employee.employeeId}">Delete</a></td>
+		
 			</tr>
 		</c:forEach>
 	</table>
+	
 	<br><br>
-	<a href="Add New Employee.jsp"></a>
+	<a href="addEmployee.jsp">Add New Employee</a>
 </body>
 </html>
